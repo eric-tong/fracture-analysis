@@ -10,9 +10,11 @@ N = 10000;
 %% Analyze network
 Qt = zeros(N:1);
 for i = 1:N
-    [~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, Qin, ~, ~] = analyze_single_network(Nf, L, H, s, pL, pR);
+    [~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, Qin, ~, ~] = analyze_single_network(Nf, L, H, s, pL, pR);
     Qt(i) = Qin;
     disp(num2str(i));
+    
+    %Find inflow only
 end
 
 %% Plot

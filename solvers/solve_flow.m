@@ -2,20 +2,16 @@ function [pns, QQ] = solve_flow(CC, bb, ll, pL, pR, xns, L)
 % SOLVE_FLOW Solve flow equations for a general fracture network
 
 Nn = length(CC);
-QQ = zeros(Nn, Nn);
-
 K = generate_darcys_coefficient(bb, ll);
 Ap = sparse(generate_pressure_coefficient_matrix(CC, K));
-[Aps, c] = generate_simplified_pressure_system(Ap, xns, pL, pR, L);
-Aps = sparse(Aps);
-pns = Aps\c;
+[nL, nR] = find_edge_nodes(xns, L);
 
-for i = 1:Nn
-    for j = i+1:Nn
-        Qij = K(i,j) .* (pns(i) - pns(j));
-        QQ(i,j) = Qij;
-        QQ(j,i) = -Qij;
-    end
-end
+tic
+[Aps, c] = generate_extra_simplified_pressure_system(Ap, xns, nL, pL, nR, pR, L);
+pns = full(Aps\c);
+pns = insert_known_values(pns, nL, pL, nR, pR);
+toc
+
+QQ = K .* ( repmat(pns,1,Nn) - repmat(pns',Nn,1) );
 end
 
