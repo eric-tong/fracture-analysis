@@ -7,8 +7,8 @@ N = length(lfs);    % fracture count
 Nn = 0;             % node count
 
 CCf = zeros(N, N);
-xns = zeros(N*N, 1);
-yns = zeros(N*N, 1);
+xns = zeros((N*N - N) / 2, 1);
+yns = zeros((N*N - N) / 2, 1);
 
 for i = 1:N-1
     for k = i+1:N

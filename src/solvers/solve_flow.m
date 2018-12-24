@@ -6,11 +6,9 @@ K = generate_darcys_coefficient(bb, ll);
 Ap = sparse(generate_pressure_coefficient_matrix(CC, K));
 [nL, nR] = find_edge_nodes(xns, L);
 
-tic
 [Aps, c] = generate_extra_simplified_pressure_system(Ap, xns, nL, pL, nR, pR, L);
 pns = full(Aps\c);
 pns = insert_known_values(pns, nL, pL, nR, pR);
-toc
 
 QQ = K .* ( repmat(pns,1,Nn) - repmat(pns',Nn,1) );
 end

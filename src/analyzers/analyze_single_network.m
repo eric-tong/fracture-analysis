@@ -1,4 +1,4 @@
-function [lfs, thetafs, bfs, xfs, yfs, xns, yns, CC, bb, ll, QQ, pns, Qns, Qin, Qout, k] = analyze_single_network(Nf, L, H, s, pL, pR)
+function [lfs, thetafs, bfs, xfs, yfs, xns, yns, CC, bb, ll, QQ, pns] = analyze_single_network(Nf, L, H, s, pL, pR)
 %% Task 1A
 [lfs, thetafs, bfs, xfs, yfs] = generate_fractures(Nf, L, H, s);
 

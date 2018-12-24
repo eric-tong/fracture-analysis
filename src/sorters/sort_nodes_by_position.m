@@ -22,6 +22,6 @@ end
         dx = xns - xleft;
         dy = yns - yleft;
         
-        dns = sqrt(dx.*dx + dy.*dy);
+        dns = dx.*dx + dy.*dy;
     end
 end

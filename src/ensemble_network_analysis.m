@@ -1,5 +1,5 @@
 %% Set parameters
-Nf = 50;
+Nf = 40 ;
 L = 20;
 H = 10;
 s = NaN;
@@ -10,7 +10,8 @@ N = 10000;
 %% Analyze network
 Qt = zeros(N:1);
 for i = 1:N
-    [~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, Qin, ~, ~] = analyze_single_network(Nf, L, H, s, pL, pR);
+    [lfs, thetafs, bfs, xfs, yfs, xns, yns, CC, bb, ll, QQ, pns] = analyze_single_network(Nf, L, H, s, pL, pR);
+    [Qin, Qout] = find_inflow_outflow(QQ, xns, L);
     Qt(i) = Qin;
     disp(num2str(i));
     
