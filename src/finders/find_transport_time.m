@@ -1,5 +1,5 @@
 function tps = find_transport_time(nps, bb, ll, QQ)
-tt = ll ./ (QQ ./ (bb .* bb));
+tt = ll ./ (QQ ./ bb ./ bb);
 tt(isnan(tt)) = 0;
 tps = zeros(size(nps));
 

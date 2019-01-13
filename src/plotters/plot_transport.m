@@ -11,6 +11,7 @@ function plot_transport(xns,yns,CC,QQ,nps,tps,L,H)
     
     % Plot the links, color-coded by flow rate
     cmap = colormap(hot(256));
+    cmap(cmap < 0.5) = 0.8;
     cmin = min(QQ(QQ>0));
     cmax = max(QQ(QQ>0));
     for i=1:Nn
@@ -24,19 +25,5 @@ function plot_transport(xns,yns,CC,QQ,nps,tps,L,H)
                 plot([xns(i),xns(j)],[yns(i),yns(j)],'-','LineWidth',1,'Color',cmap(cind,:))
             end
         end
-    end
-    
-    % Plot the nodes, color-coded by time
-    cmap = colormap(parula(256));
-    cmin = log(min(tps(tps>0)));
-    cmax = log(max(tps(tps>0)));
-    for i=1:length(tps)
-        if tps(i)==0
-            cind = 1;
-        else
-            cind = round(255*(log(tps(i))-cmin)/(cmax-cmin)) + 1;
-        end
-        plot(xns(nps(i)),yns(nps(i)),'o','MarkerSize',6,'MarkerFaceColor',cmap(cind,:),'MarkerEdgeColor','None')
-    end
-    
+    end 
 end

@@ -13,6 +13,12 @@ function plot_flow(xns,yns,CC,QQ,pns,L,H)
     cmap = colormap(hot(256));
     cmin = min(QQ(QQ>0));
     cmax = max(QQ(QQ>0));
+    
+%     QQ_top = reshape(QQ, [], 1);
+%     QQ_top = sort(QQ_top, 'descend');
+%     QQ_top = QQ_top(150);
+%     sum = 0;
+    
     for i=1:Nn
         for j=1:Nn
             if CC(i,j)>0 && QQ(i,j)>=0

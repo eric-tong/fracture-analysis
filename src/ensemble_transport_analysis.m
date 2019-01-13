@@ -1,15 +1,15 @@
 %% Set parameters
-Nf = 200;
+Nf = 40;
 L = 20;
 H = 10;
 s = NaN;
 pL = 1E5;
 pR = 0;
-N = 1000;
+N = 10000;
 
 %% Simulate transport
-[lfs, thetafs, bfs, xfs, yfs, xns, yns, CC, bb, ll, QQ, pns, Qns, Qin, Qout, k] = analyze_single_network(Nf, L, H, s, pL, pR);
-[nnps, ttps] = simulate_transport(xns, L, bb, ll, QQ, N);
+[lfs, thetafs, bfs, xfs, yfs, xns, yns, CC, bb, ll, QQ, pns] = analyze_single_network(Nf, L, H, s, pL, pR);
+[nnps, ttps, llps] = simulate_transport(xns, L, bb, ll, QQ, N);
 
 %% Arrival time distribution
 ttps = sort(ttps, 'descend');
